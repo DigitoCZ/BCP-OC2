@@ -54,6 +54,7 @@ class ModelPaymentBCPPayment extends Model {
         $method_data = array(
   				'code'       => 'bcp_payment',
   				'title'      => $this->language->get('text_title'),
+          'terms'      => '',
   				'sort_order' => $this->config->get('bcp_payment_sort_order')
   			);
       }
@@ -62,6 +63,7 @@ class ModelPaymentBCPPayment extends Model {
         $method_data = array(
   				'code'       => 'bcp_payment',
   				'title'      => $titleImg,
+          'terms'      => '',
   				'sort_order' => $this->config->get('bcp_payment_sort_order')
   			);
       }

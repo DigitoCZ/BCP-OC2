@@ -1,6 +1,6 @@
 <?php
 class ControllerPaymentBCPPayment extends Controller {
-	protected function index() {
+	public function index() {
 		$this->language->load('payment/bcp_payment');
 
 		$this->data['button_confirm'] = $this->language->get('button_confirm');
@@ -10,13 +10,11 @@ class ControllerPaymentBCPPayment extends Controller {
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
 		if ($order_info) {
-			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/bcp_payment.tpl')) {
-				$this->template = $this->config->get('config_template') . '/template/payment/bcp_payment.tpl';
+      if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/bcp_payment.tpl')) {
+				return $this->load->view($this->config->get('config_template') . '/template/payment/bcp_payment.tpl', $data);
 			} else {
-				$this->template = 'default/template/payment/bcp_payment.tpl';
+				return $this->load->view('default/template/payment/bcp_payment.tpl', $data);
 			}
-
-      $this->render();
 		}
 
 	}
