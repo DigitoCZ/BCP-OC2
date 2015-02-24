@@ -3,7 +3,7 @@ class ControllerPaymentBCPPayment extends Controller {
 	public function index() {
 		$this->language->load('payment/bcp_payment');
 
-		$this->data['button_confirm'] = $this->language->get('button_confirm');
+		$data['button_confirm'] = $this->language->get('button_confirm');
 
 		$this->load->model('checkout/order');
 
@@ -62,33 +62,33 @@ class ControllerPaymentBCPPayment extends Controller {
 
 				switch($paymentStatus) {
 					case 'confirmed':
-							$order_status_id = 5; //complete
+							$order_status_id = $this->config->get('bcp_payment_confirmed_status_id');
 						break;
 					case 'pending':
-						$order_status_id = 1; //pending
+						$order_status_id = $this->config->get('bcp_payment_pending_status_id');
 						break;
           case 'received':
-						$order_status_id = 1; //pending
+						$order_status_id = $this->config->get('bcp_payment_received_status_id');
 						break;
           case 'insufficient_amount':
-						$order_status_id = 7; //cancel
+						$order_status_id = $this->config->get('bcp_payment_insufficient_amount_status_id');
 						break;
           case 'invalid':
-						$order_status_id = 7; //cancel
+						$order_status_id = $this->config->get('bcp_payment_invalid_status_id');
 						break;
           case 'timeout':
-						$order_status_id = 14; //expired
+						$order_status_id = $this->config->get('bcp_payment_timeout_status_id');
 						break;
 
 				}
 
-				if (!$order_info['order_status_id']) {
-					$this->model_checkout_order->confirm($orderId, $order_status_id);
+      if (!$order_info['order_status_id']) {
+					$this->model_checkout_order->addOrderHistory($order_id, $order_status_id);
 				} else {
-					$this->model_checkout_order->update($orderId, $order_status_id);
+					$this->model_checkout_order->addOrderHistory($order_id, $order_status_id);
 				}
 			} else {
-				$this->model_checkout_order->confirm($orderId, $this->config->get('config_order_status_id'));
+				$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('config_order_status_id'));
 			}
 
     }

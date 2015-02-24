@@ -22,6 +22,15 @@ $_['entry_geo_zone']				 = 'Geo Zone:';
 $_['entry_status']					 = 'Status:';
 $_['entry_sort_order']				 = 'Sort Order:';
 
+// Statusy
+$_['entry_confirmed_status'] = 'Confirmed Status';
+$_['entry_pending_status']		 = 'Pending Status';
+$_['entry_received_status']			 = 'Received Status';
+$_['entry_insufficient_amount_status']			 = 'Insufficient Amount Status';
+$_['entry_invalid_status']			 = 'Invalid Status';
+$_['entry_timeout_status']			 = 'Timeout Status';
+
+
 // Tab
 $_['tab_general']					 = 'General';
 $_['tab_order_status']     = 'Order Status';

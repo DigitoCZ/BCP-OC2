@@ -55,6 +55,17 @@ class ControllerPaymentBCPPayment extends Controller {
 		$data['button_save'] = $this->language->get('button_save');
 		$data['button_cancel'] = $this->language->get('button_cancel');
 
+    //payment statuses
+    $data['entry_confirmed_status'] = $this->language->get('entry_confirmed_status');
+		$data['entry_pending_status'] = $this->language->get('entry_pending_status');
+		$data['entry_received_status'] = $this->language->get('entry_received_status');
+		$data['entry_insufficient_amount_status'] = $this->language->get('entry_insufficient_amount_status');
+		$data['entry_invalid_status'] = $this->language->get('entry_invalid_status');
+		$data['entry_timeout_status'] = $this->language->get('entry_timeout_status');
+
+
+
+
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {
@@ -111,6 +122,45 @@ class ControllerPaymentBCPPayment extends Controller {
 		} else {
 			$data['bcp_payment_currency'] = $this->config->get('bcp_payment_currency');
 		}
+
+
+    if (isset($this->request->post['bcp_payment_confirmed_status_id'])) {
+			$data['bcp_payment_confirmed_status_id'] = $this->request->post['bcp_payment_confirmed_status_id'];
+		} else {
+			$data['bcp_payment_confirmed_status_id'] = $this->config->get('bcp_payment_confirmed_status_id');
+		}
+
+		if (isset($this->request->post['bcp_payment_pending_status_id'])) {
+			$data['bcp_payment_pending_status_id'] = $this->request->post['bcp_payment_pending_status_id'];
+		} else {
+			$data['bcp_payment_pending_status_id'] = $this->config->get('bcp_payment_pending_status_id');
+		}
+
+		if (isset($this->request->post['bcp_payment_received_status_id'])) {
+			$data['bcp_payment_received_status_id'] = $this->request->post['bcp_payment_received_status_id'];
+		} else {
+			$data['bcp_payment_received_status_id'] = $this->config->get('bcp_payment_received_status_id');
+		}
+
+		if (isset($this->request->post['bcp_payment_insufficient_amount_status_id'])) {
+			$data['bcp_payment_insufficient_amount_status_id'] = $this->request->post['bcp_payment_insufficient_amount_status_id'];
+		} else {
+			$data['bcp_payment_insufficient_amount_status_id'] = $this->config->get('bcp_payment_insufficient_amount_status_id');
+		}
+
+		if (isset($this->request->post['bcp_payment_invalid_status_id'])) {
+			$data['bcp_payment_invalid_status_id'] = $this->request->post['bcp_payment_invalid_status_id'];
+		} else {
+			$data['bcp_payment_invalid_status_id'] = $this->config->get('bcp_payment_invalid_status_id');
+		}
+
+		if (isset($this->request->post['bcp_payment_timeout_status_id'])) {
+			$data['bcp_payment_timeout_status_id'] = $this->request->post['bcp_payment_timeout_status_id'];
+		} else {
+			$data['bcp_payment_timeout_status_id'] = $this->config->get('bcp_payment_timeout_status_id');
+		}
+
+
 
 		$this->load->model('localisation/order_status');
 
