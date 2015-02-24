@@ -255,25 +255,15 @@ class ControllerPaymentBCPPayment extends Controller {
     public function return_url(){
       $returnStatus = $this->request->get['bitcoinpay-status'];
 
-      $this->log->write("Status: " . $returnStatus);
+      if(strcmp($returnStatus,"true") == 0)
+        $this->load->language('checkout/success');
+      elseif(strcmp($returnStatus,"received") == 0)
+        $this->load->language('payment/bcp_payment_received');
+      elseif(strcmp($returnStatus,"cancel") == 0)
+        $this->load->language('payment/bcp_payment_cancel');
+      else
+        $this->load->language('payment/bcp_payment_fail');
 
-      if(strcmp($returnStatus,"true") == 0){
-        $this->log->write("IF - TRUE");
-        $statusUrl = $this->url->link('checkout/success');
-      }
-      else{
-        $this->log->write("IF - ELSE");
-        $statusUrl = $this->url->link('payment/bcp_payment/fail_url');
-      }
-
-      $this->log->write("before header");
-      //redirect to status url
-      header("Location: {$statusUrl}");
-      die();
-    }
-    public function fail_url() {
-      //load message
-      $this->load->language('payment/bcp_payment_fail');
 
       if (isset($this->session->data['order_id'])) {
     			$this->cart->clear();
@@ -360,7 +350,6 @@ class ControllerPaymentBCPPayment extends Controller {
 		} else {
 			$this->response->setOutput($this->load->view('default/template/common/success.tpl', $data));
 		}
-
-	}
+    }
 }
 ?>
