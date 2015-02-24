@@ -235,7 +235,7 @@ class ControllerPaymentBCPPayment extends Controller {
         //Getting API-ID from config
         $apiID = $this->config->get('bcp_payment_api');
         $settlement_url = 'https://www.bitcoinpay.com/api/v1/settlement/';
-        //sending data via cURL
+
         $curlheaders = array(
         "Content-type: application/json",
         "Authorization: Token {$apiID}",
@@ -245,7 +245,6 @@ class ControllerPaymentBCPPayment extends Controller {
         curl_setopt($curl, CURLOPT_VERBOSE, true);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER,$curlheaders);
-        //curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //bypassing ssl verification, because of bad compatibility
 
         $response = curl_exec($curl);
@@ -256,9 +255,6 @@ class ControllerPaymentBCPPayment extends Controller {
 
         $answer = json_decode($jBody);
         $active_currencies = $answer -> data -> active_settlement_currencies;
-
-        $this->log->write("curl");
-        $this->log->write($active_currencies);
 
         foreach ($active_currencies as $value) {
           if(strcmp($value,$user_curr)==0){
