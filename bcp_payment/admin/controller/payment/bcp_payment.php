@@ -78,6 +78,17 @@ class ControllerPaymentBCPPayment extends Controller {
 			$data['error_api'] = '';
 		}
 
+    //payout currency error
+    if (isset($this->error['currency'])) {
+			$data['error_currency'] = $this->error['currency'];
+		}
+    elseif (isset($this->error['currency_invalid'])) {
+			$data['error_currency'] = $this->error['currency_invalid'];
+		}
+    else {
+			$data['error_currency'] = '';
+		}
+
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(
@@ -209,6 +220,67 @@ class ControllerPaymentBCPPayment extends Controller {
     if (!$this->request->post['bcp_payment_api']) {
 			$this->error['api'] = $this->language->get('error_api');
 		}
+
+    if (!$this->request->post['bcp_payment_currency']) {
+			$this->error['currency'] = $this->language->get('error_currency');
+		}
+    else {
+      $user_curr = $this->request->post['bcp_payment_currency'];
+
+      if(strlen($user_curr)!=3){
+        $this->error['currency_invalid'] = $this->language->get('error_currency_format');
+      }
+      else{
+        $isValid = false;
+        //Getting API-ID from config
+        $apiID = $this->config->get('bcp_payment_api');
+        $settlement_url = 'https://www.bitcoinpay.com/api/v1/settlement/';
+        //sending data via cURL
+        $curlheaders = array(
+        "Content-type: application/json",
+        "Authorization: Token {$apiID}",
+        );
+        $curl = curl_init($settlement_url);
+        curl_setopt($curl, CURLOPT_HEADER, true);
+        curl_setopt($curl, CURLOPT_VERBOSE, true);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER,$curlheaders);
+        //curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //bypassing ssl verification, because of bad compatibility
+
+        $response = curl_exec($curl);
+
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+        $jHeader = substr($response, 0, $header_size);
+        $jBody = substr($response, $header_size);
+
+        $answer = json_decode($jBody);
+        $active_currencies = $answer -> data -> active_settlement_currencies;
+
+        $this->log->write("curl");
+        $this->log->write($active_currencies);
+
+        foreach ($active_currencies as $value) {
+          if(strcmp($value,$user_curr)==0){
+            $isValid = true;
+            break;
+          }
+        }
+        if (!$isValid){
+        $valid_currencies = '';
+          foreach ($active_currencies as $value) {
+            $valid_currencies .= '<br/ >' . $value;
+          }
+
+          $this->error['currency_invalid'] = $this->language->get('error_currency_invalid') . $valid_currencies;
+        }
+
+
+        curl_close($curl);
+      }
+		}
+
+
 
     return !$this->error;
 	}

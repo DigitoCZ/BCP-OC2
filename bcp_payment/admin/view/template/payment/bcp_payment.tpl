@@ -56,10 +56,13 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group required">
                 <label class="col-sm-2 control-label" for="payout-currency"><span data-toggle="tooltip" title="<?php echo $help_currency; ?>"><?php echo $entry_currency; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="bcp_payment_currency" value="<?php echo $bcp_payment_currency; ?>" placeholder="<?php echo $entry_currency; ?>" id="payout-currency" class="form-control"/>
+                  <?php if ($error_currency) { ?>
+                  <div class="text-danger"><?php echo $error_currency; ?></div>
+                  <?php } ?>
                 </div>
               </div>
 

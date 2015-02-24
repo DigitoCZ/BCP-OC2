@@ -41,8 +41,11 @@ $_['help_email']			    = 'Email where notifications about Payment changes are se
 $_['help_currency']				= 'Currency of settlement. You must first set a payout for currency in your account Settings > Payout in your account at BitcoinPay.com. If the currency is not set in payout, the request will return an error.';
 
 
-// Error
-$_['error_permission']				 = 'Warning: You do not have permission to modify payment PayPal!';
+// Errors
+$_['error_permission']				 = 'Warning: You do not have permission to modify this payment module!';
 $_['error_email']					 = 'E-Mail required!';
 $_['error_api']					 = 'API key required!';
+$_['error_currency']					 = 'Your payout currency is not set';
+$_['error_currency_invalid']					 = 'Your payout currency do not correspond with your account settings... You may choose from:';
+$_['error_currency_format']					 = 'Bad currency format, use 3 letters';
 ?>
