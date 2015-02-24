@@ -3,12 +3,11 @@
 BitcoinPay payment module for Opencart v2.0
 
 ### Version
-0.9.1 BETA
+1.0.1 BETA
 
 ### Todo's
 
- - Custom order IDs
- - Secure payout currency selection
+ - Comprehensive testing
 
 License
 ----
