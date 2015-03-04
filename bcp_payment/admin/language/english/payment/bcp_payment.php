@@ -36,6 +36,7 @@ $_['tab_general']					 = 'General';
 $_['tab_order_status']     = 'Order Status';
 
 // Help
+$_['help_api']			    = 'API key is used for backed authentication and you should keep it private. You will find your API key in your account under settings > API';
 $_['help_password']				= 'We recommend using a callback password. It is used as a data validation for stronger security. Callback password can be set under Settings > API in your account at BitcoinPay.com';
 $_['help_email']			    = 'Email where notifications about Payment changes are sent.';
 $_['help_currency']				= 'Currency of settlement. You must first set a payout for currency in your account Settings > Payout in your account at BitcoinPay.com. If the currency is not set in payout, the request will return an error.';
@@ -45,7 +46,10 @@ $_['help_currency']				= 'Currency of settlement. You must first set a payout fo
 $_['error_permission']				 = 'Warning: You do not have permission to modify this payment module!';
 $_['error_email']					 = 'E-Mail required!';
 $_['error_api']					 = 'API key required!';
-$_['error_currency']					 = 'Your payout currency is not set';
-$_['error_currency_invalid']					 = 'Your payout currency do not correspond with your account settings... You may choose from:';
+$_['error_api_wrong']					 = 'API key is not valid!';
+$_['error_api_general']					 = 'Genaral API ERROR, please refer to support, with error code: ';
+$_['error_currency']					 = 'Payout currency required!';
+$_['error_currency_invalid']					 = 'Bad currency... Folowing currencies are supported:';
 $_['error_currency_format']					 = 'Bad currency format, use 3 letters';
+$_['error_currency_set']					 = 'You dont have any currency added. You need to add at least one payout in your account. Go to your BitcoinPay account Settings > Payout add the payout account.';
 ?>

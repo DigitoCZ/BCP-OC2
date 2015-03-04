@@ -33,7 +33,7 @@
             <div class="tab-pane active" id="tab-general">
 
             <div class="form-group required">
-                <label class="col-sm-2 control-label" for="entry_api"><?php echo $entry_api; ?></label>
+                <label class="col-sm-2 control-label" for="entry_api"><span data-toggle="tooltip" title="<?php echo $help_api; ?>"><?php echo $entry_api; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="bcp_payment_api" value="<?php echo $bcp_payment_api; ?>" placeholder="<?php echo $entry_api; ?>" id="entry_api" class="form-control"/>
                   <?php if ($error_api) { ?>
