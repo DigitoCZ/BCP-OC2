@@ -63,6 +63,18 @@ class ControllerPaymentBCPPayment extends Controller {
 		$data['entry_insufficient_amount_status'] = $this->language->get('entry_insufficient_amount_status');
 		$data['entry_invalid_status'] = $this->language->get('entry_invalid_status');
 		$data['entry_timeout_status'] = $this->language->get('entry_timeout_status');
+    $data['entry_refunded_status'] = $this->language->get('entry_refunded_status');
+    $data['entry_pat_status'] = $this->language->get('entry_pat_status');
+
+    //payment helps
+    $data['help_confirmed_status'] = $this->language->get('help_confirmed_status');
+		$data['help_pending_status'] = $this->language->get('help_pending_status');
+		$data['help_received_status'] = $this->language->get('help_received_status');
+		$data['help_insufficient_amount_status'] = $this->language->get('help_insufficient_amount_status');
+		$data['help_invalid_status'] = $this->language->get('help_invalid_status');
+		$data['help_timeout_status'] = $this->language->get('help_timeout_status');
+    $data['help_refunded_status'] = $this->language->get('help_refunded_status');
+    $data['help_pat_status'] = $this->language->get('help_pat_status');
 
 
 
@@ -170,6 +182,18 @@ class ControllerPaymentBCPPayment extends Controller {
 			$data['bcp_payment_timeout_status_id'] = $this->request->post['bcp_payment_timeout_status_id'];
 		} else {
 			$data['bcp_payment_timeout_status_id'] = $this->config->get('bcp_payment_timeout_status_id');
+		}
+
+    if (isset($this->request->post['bcp_payment_refunded_status_id'])) {
+			$data['bcp_payment_refunded_status_id'] = $this->request->post['bcp_payment_refunded_status_id'];
+		} else {
+			$data['bcp_payment_refunded_status_id'] = $this->config->get('bcp_payment_refunded_status_id');
+		}
+
+    if (isset($this->request->post['bcp_payment_pat_status_id'])) {
+			$data['bcp_payment_pat_status_id'] = $this->request->post['bcp_payment_pat_status_id'];
+		} else {
+			$data['bcp_payment_pat_status_id'] = $this->config->get('bcp_payment_pat_status_id');
 		}
 
 

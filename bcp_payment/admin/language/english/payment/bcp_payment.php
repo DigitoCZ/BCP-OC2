@@ -26,10 +26,21 @@ $_['entry_sort_order']				 = 'Sort Order:';
 $_['entry_confirmed_status'] = 'Confirmed Status';
 $_['entry_pending_status']		 = 'Pending Status';
 $_['entry_received_status']			 = 'Received Status';
-$_['entry_insufficient_amount_status']			 = 'Insufficient Amount Status';
-$_['entry_invalid_status']			 = 'Invalid Status';
+$_['entry_insufficient_amount_status']			 = 'Insufficient Amount';
+$_['entry_invalid_status']			 = 'Invalid';
 $_['entry_timeout_status']			 = 'Timeout Status';
+$_['entry_refunded_status']			 = 'Refunded';
+$_['entry_pat_status']			 = 'Paid after timeout';
 
+//Status help
+$_['help_confirmed_status'] = 'This is THE ONLY payment status, you can consider as final. Payment is credited into balance and will be settled';
+$_['help_pending_status']		 = 'Waiting for payment';
+$_['help_received_status']			 = 'Payment has been received but not confirmed yet';
+$_['help_insufficient_amount_status']			 = 'Customer sent amount lower than required. Customer can ask for the refund directly from the invoice url';
+$_['help_invalid_status']			 = 'An error has occured';
+$_['help_timeout_status']			 = 'Payment has not been paid in given time period and has expired';
+$_['help_refunded_status']			 = 'Payment has been returned to customer';
+$_['help_pat_status']			 = 'Payment has been paid too late. Customer can ask for refund directly from the invoice url';
 
 // Tab
 $_['tab_general']					 = 'General';
