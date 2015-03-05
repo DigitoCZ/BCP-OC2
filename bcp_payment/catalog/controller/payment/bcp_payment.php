@@ -222,8 +222,10 @@ class ControllerPaymentBCPPayment extends Controller {
       $response = json_decode($jBody);
 
       //adding paymentID to payment method
-      $prePaymentMethod = html_entity_decode($order_info['payment_method'], ENT_QUOTES, 'UTF-8');
-      $finPaymentMethod = $prePaymentMethod . "<br /><strong>PaymentID: </strong>" . $response -> data -> payment_id;
+      $BCPPaymentId = $response -> data -> payment_id;
+      $BCPInvoiceUrl = "<br>Invoice: https://bitcoinpay.com/en/sci/invoice/btc/". $BCPPaymentId;
+      //$prePaymentMethod = html_entity_decode($order_info['payment_method'], ENT_QUOTES, 'UTF-8');
+      $finPaymentMethod = "BitcoinPay". "<br>PaymentID: " . $BCPPaymentId . $BCPInvoiceUrl;
 
       $paymentQuery = $this->db->query("UPDATE `" . DB_PREFIX . "order` SET `payment_method` = '" . $finPaymentMethod . "' WHERE `order_id` = " . $order_info['order_id']);
 
