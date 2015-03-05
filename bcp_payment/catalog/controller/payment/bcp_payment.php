@@ -1,4 +1,7 @@
 <?php
+/**
+ *  Copyright (C) Digito.cz, Digito Proprietary License
+ * */
 class ControllerPaymentBCPPayment extends Controller {
 	public function index() {
 		$this->language->load('payment/bcp_payment');

@@ -1,4 +1,7 @@
 <?php
+/**
+ *  Copyright (C) Digito.cz, Digito Proprietary License
+ * */
 // Heading
 $_['heading_title']					 = 'BitcoinPay Payment';
 

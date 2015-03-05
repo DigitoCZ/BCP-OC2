@@ -1,4 +1,8 @@
 <?php
+/**
+ *  Copyright (C) Digito.cz, Digito Proprietary License
+ * */
+
 class ControllerPaymentBCPPayment extends Controller {
 	private $error = array();
 

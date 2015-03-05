@@ -1,4 +1,7 @@
-<?php 
+<?php
+/**
+ *  Copyright (C) Digito.cz, Digito Proprietary License
+ * */
 class ModelPaymentBCPPayment extends Model {
  public function getMethod($address, $total) {
 		$this->load->language('payment/bcp_payment');

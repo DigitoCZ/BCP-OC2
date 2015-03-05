@@ -1,3 +1,4 @@
+<!--Copyright (C) Digito.cz, Digito Proprietary License-->
 <form action="index.php?route=payment/bcp_payment/paysend" method="post">
   <div class="buttons">
     <div class="right">
