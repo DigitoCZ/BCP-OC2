@@ -78,7 +78,7 @@ class ControllerPaymentBCPPayment extends Controller {
           case 'timeout':
 						$order_status_id = $this->config->get('bcp_payment_timeout_status_id');
 						break;
-          case 'refunded':
+          case 'refund':
 						$order_status_id = $this->config->get('bcp_payment_refunded_status_id');
 						break;
           case 'paid_after_timeout':
